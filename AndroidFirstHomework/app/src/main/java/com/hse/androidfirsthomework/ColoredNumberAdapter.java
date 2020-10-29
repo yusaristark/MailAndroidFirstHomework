@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 public class ColoredNumberAdapter extends RecyclerView.Adapter<ColoredNumberAdapter.ViewHolder> {
-    private ArrayList<ColoredNumber> list;
+    private final ArrayList<ColoredNumber> list;
     private Listener listener;
 
     interface Listener {
@@ -56,19 +56,16 @@ public class ColoredNumberAdapter extends RecyclerView.Adapter<ColoredNumberAdap
         TextView textView = cardView.findViewById(R.id.card_text);
         ColoredNumber number = list.get(position);
         textView.setText(String.valueOf(number.getValue()));
-        textView.setTextColor(ContextCompat.getColor(cardView.getContext(), number.getColor()));
+        if (number.getValue() % 2 == 0) {
+            textView.setTextColor(ContextCompat.getColor(cardView.getContext(), R.color.red));
+        } else {
+            textView.setTextColor(ContextCompat.getColor(cardView.getContext(), R.color.blue));
+        }
         cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (listener != null) {
-                    int value = position + 1;
-                    int color;
-                    if (value % 2 == 0) {
-                        color = R.color.red;
-                    } else {
-                        color = R.color.blue;
-                    }
-                    listener.onClick(new ColoredNumber(value, color));
+                    listener.onClick(list.get(position));
                 }
             }
         });

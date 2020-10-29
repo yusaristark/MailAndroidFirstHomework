@@ -33,26 +33,13 @@ public class ColoredNumberRepository {
     }
 
     public void addItem(int value) {
-        int color;
-        if (value % 2 == 0) {
-            color = R.color.red;
-        } else {
-            color = R.color.blue;
-        }
-        mData.add(new ColoredNumber(value, color));
+        mData.add(new ColoredNumber(value));
     }
 
     private ArrayList<ColoredNumber> initializeData() {
         ArrayList<ColoredNumber> list = new ArrayList<>();
         for (int i = 0; i < 100; i++) {
-            int value = i + 1;
-            int color;
-            if (value % 2 == 0) {
-                color = R.color.red;
-            } else {
-                color = R.color.blue;
-            }
-            list.add(new ColoredNumber(value, color));
+            list.add(new ColoredNumber(i+1));
         }
         return list;
     }

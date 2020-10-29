@@ -59,7 +59,7 @@ public class RecyclerFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 int temp = repository.list().size();
-                repository.addItem(temp+1);
+                repository.addItem(temp + 1);
                 counter = repository.list().size();
                 adapter.notifyItemInserted(temp);
             }

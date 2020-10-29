@@ -32,7 +32,11 @@ public class NumberFragment extends Fragment {
         View layout = inflater.inflate(R.layout.fragment_number, container, false);
         TextView textView = layout.findViewById(R.id.big_number);
         textView.setText(String.valueOf(number.getValue()));
-        textView.setTextColor(ContextCompat.getColor(layout.getContext(), number.getColor()));
+        if (number.getValue() % 2 == 0) {
+            textView.setTextColor(ContextCompat.getColor(layout.getContext(), R.color.red));
+        } else {
+            textView.setTextColor(ContextCompat.getColor(layout.getContext(), R.color.blue));
+        }
         return layout;
     }
 }
