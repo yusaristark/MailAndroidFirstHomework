@@ -37,12 +37,12 @@ public class ColoredNumberAdapter extends RecyclerView.Adapter<ColoredNumberAdap
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        private CardView cardView;
+        private final CardView cardView;
         private ColoredNumber number;
 
         @Override
         public void onClick(View view) {
-            if (listener != null) {
+            if (listener != null && number != null) {
                 listener.onClick(number);
             }
         }
