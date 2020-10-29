@@ -1,6 +1,5 @@
 package com.hse.androidfirsthomework;
 
-import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +7,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -17,7 +17,7 @@ public class ColoredNumberAdapter extends RecyclerView.Adapter<ColoredNumberAdap
     private Listener listener;
 
     interface Listener {
-        void onClick(int position);
+        void onClick(ColoredNumber coloredNumber);
     }
 
 
@@ -56,12 +56,19 @@ public class ColoredNumberAdapter extends RecyclerView.Adapter<ColoredNumberAdap
         TextView textView = cardView.findViewById(R.id.card_text);
         ColoredNumber number = list.get(position);
         textView.setText(String.valueOf(number.getValue()));
-        textView.setTextColor(cardView.getResources().getColor(number.getColor()));
+        textView.setTextColor(ContextCompat.getColor(cardView.getContext(), number.getColor()));
         cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (listener != null) {
-                    listener.onClick(position);
+                    int value = position + 1;
+                    int color;
+                    if (value % 2 == 0) {
+                        color = R.color.red;
+                    } else {
+                        color = R.color.blue;
+                    }
+                    listener.onClick(new ColoredNumber(value, color));
                 }
             }
         });

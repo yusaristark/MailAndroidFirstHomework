@@ -6,13 +6,9 @@ public class ColoredNumber implements Serializable {
     private final int value;
     private final int color;
 
-    public ColoredNumber(int value) {
+    public ColoredNumber(int value, int color) {
         this.value = value;
-        if (value % 2 == 0) {
-            color = R.color.red;
-        } else {
-            color = R.color.blue;
-        }
+        this.color = color;
     }
 
     public int getColor() {
