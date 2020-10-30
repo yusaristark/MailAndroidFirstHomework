@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="columns">3</integer>
+    <dimen name="numtextsize">100sp</dimen>
+    <dimen name="recyclermargin">16dp</dimen>
+    <dimen name="cardtextsize">50sp</dimen>
+    <dimen name="cardheight">100dp</dimen>
+    <dimen name="cardmargin">5dp</dimen>
+    <dimen name="cardelevation">2dp</dimen>
+    <dimen name="cardcornerrad">4dp</dimen>
+</resources>
