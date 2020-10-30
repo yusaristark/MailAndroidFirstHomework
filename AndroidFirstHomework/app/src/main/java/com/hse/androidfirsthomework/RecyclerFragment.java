@@ -1,8 +1,6 @@
 package com.hse.androidfirsthomework;
 
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -18,8 +16,8 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class RecyclerFragment extends Fragment {
 
-    private final ColoredNumberRepository repository = ColoredNumberRepository.getInstance();
-    private int counter = repository.list().size();
+    private ColoredNumberRepository repository = ColoredNumberRepository.getInstance();
+    private int counter;
 
 
     public RecyclerFragment() {
@@ -40,7 +38,7 @@ public class RecyclerFragment extends Fragment {
     }
 
     @Override
-    public void onSaveInstanceState(@NonNull Bundle savedInstanceState) {
+    public void onSaveInstanceState(Bundle savedInstanceState) {
         super.onSaveInstanceState(savedInstanceState);
         savedInstanceState.putInt("counter", counter);
     }
