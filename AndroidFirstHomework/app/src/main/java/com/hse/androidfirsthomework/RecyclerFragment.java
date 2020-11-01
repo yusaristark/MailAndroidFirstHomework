@@ -1,6 +1,8 @@
 package com.hse.androidfirsthomework;
 
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -10,14 +12,15 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.util.Log;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 
 public class RecyclerFragment extends Fragment {
 
-    private ColoredNumberRepository repository = ColoredNumberRepository.getInstance();
-    private int counter;
+    private ColoredNumberRepository repository;
+    private Integer counter;
 
 
     public RecyclerFragment() {
@@ -26,21 +29,36 @@ public class RecyclerFragment extends Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+        if (savedInstanceState == null) {
+            Log.d("S_NULL", "true");
+        } else {
+            Log.d("S_NULL", "false");
+        }
+        repository = new ColoredNumberRepository();
+        counter = repository.list().size();
         if (savedInstanceState != null) {
             counter = savedInstanceState.getInt("counter");
-            if (counter > 100 && counter != repository.list().size()) {
+            if (counter != repository.list().size()) {
                 for (int i = 100; i < counter; i++) {
-                    repository.addItem(i + 1);
+                    int value = i + 1;
+                    repository.addItem(value);
                 }
             }
         }
+        super.onCreate(savedInstanceState);
     }
 
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
-        super.onSaveInstanceState(savedInstanceState);
+        if (counter == null) {
+            Log.d("S_NULL_ON", "true");
+        } else {
+            Log.d("S_NULL_ON", "false");
+        }
         savedInstanceState.putInt("counter", counter);
+        Integer num = savedInstanceState.getInt("counter");
+        Log.d("S_NULL_A", num.toString());
+        super.onSaveInstanceState(savedInstanceState);
     }
 
     @Override
@@ -57,8 +75,8 @@ public class RecyclerFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 int temp = repository.list().size();
-                repository.addItem(temp + 1);
-                counter = repository.list().size();
+                counter = temp + 1;
+                repository.addItem(counter);
                 adapter.notifyItemInserted(temp);
             }
         });
