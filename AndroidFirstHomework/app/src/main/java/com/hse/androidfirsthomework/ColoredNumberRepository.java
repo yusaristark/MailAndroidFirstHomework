@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class ColoredNumberRepository {
 
-    private static volatile ColoredNumberRepository mInstance;
+    /*private static volatile ColoredNumberRepository mInstance;
 
     public static ColoredNumberRepository getInstance() {
         if (mInstance == null) {
@@ -15,12 +15,12 @@ public class ColoredNumberRepository {
             }
         }
         return mInstance;
-    }
+    }*/
 
     protected final ArrayList<ColoredNumber> mData;
 
 
-    private ColoredNumberRepository() {
+    public ColoredNumberRepository() {
         mData = initializeData();
     }
 
